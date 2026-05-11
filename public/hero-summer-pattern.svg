@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Sunny summer pattern">
+  <rect width="1600" height="1000" fill="#fff9ec"/>
+  <circle cx="1420" cy="120" r="86" fill="#ffd86b"/>
+  <path d="M0 760 C220 700 320 850 520 780 C760 695 850 835 1080 765 C1280 704 1410 755 1600 700 L1600 1000 L0 1000 Z" fill="#69b578" opacity=".22"/>
+  <path d="M0 830 C260 760 390 920 640 840 C850 775 1010 890 1220 815 C1370 765 1490 800 1600 760 L1600 1000 L0 1000 Z" fill="#80c7df" opacity=".24"/>
+  <g fill="#f47f6b" opacity=".22">
+    <circle cx="210" cy="210" r="28"/>
+    <circle cx="1080" cy="270" r="22"/>
+    <circle cx="1320" cy="520" r="30"/>
+  </g>
+</svg>
