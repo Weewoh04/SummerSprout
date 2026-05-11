@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Activities",
   path: "/activities",
   description:
-    "Kid-friendly outdoor play, indoor activities, rainy day ideas, water play, crafts, learning activities, road trip activities, and backyard fun."
+    "Browse 48 kid-friendly summer activities including outdoor play, indoor activities, rainy day ideas, water play, crafts, learning activities, road trip activities, and backyard fun."
 });
 
 export default function ActivitiesPage() {
@@ -20,15 +20,19 @@ export default function ActivitiesPage() {
             <p className="eyebrow">Activities</p>
             <h1>Summer activities for kids</h1>
             <p>
-              Low-prep ideas for sunny days, rainy afternoons, backyard play,
-              road trips, crafts, learning, and screen-free summer activities.
+              Browse 48 low-prep ideas for sunny days, rainy afternoons,
+              backyard play, road trips, crafts, learning, and screen-free
+              summer activities.
             </p>
           </div>
           <div className="card-grid">
             {activityCategories.map((category) => (
               <a className="card" href={`#${slugify(category)}`} key={category}>
                 <h2>{category}</h2>
-                <p>Browse simple family ideas for {category.toLowerCase()}.</p>
+                <p>
+                  {activities.filter((activity) => activity.category === category).length} simple family ideas for{" "}
+                  {category.toLowerCase()}.
+                </p>
               </a>
             ))}
           </div>
@@ -41,7 +45,7 @@ export default function ActivitiesPage() {
             <section className="category-section" id={slugify(category)} key={category}>
               <div className="section-heading">
                 <h2>{category}</h2>
-                <p>Starter activity ideas for {category.toLowerCase()}.</p>
+                <p>Easy, parent-friendly ideas for {category.toLowerCase()}.</p>
               </div>
               <div className="content-grid">
                 {activities

@@ -133,47 +133,409 @@ export const activityCategories = [
   "Backyard Fun"
 ];
 
-export const activities: Activity[] = activityCategories.map((category, index) => ({
-  title:
-    [
-      "Sidewalk Chalk Obstacle Course",
-      "Living Room Camp-In",
-      "Rainy Day Treasure Hunt",
-      "Sponge Toss Water Games",
-      "Pressed Flower Bookmarks",
-      "Backyard Nature Journal",
-      "License Plate Bingo",
-      "Sunset Bubble Party"
-    ][index],
-  slug: slugify(
-    [
-      "Sidewalk Chalk Obstacle Course",
-      "Living Room Camp-In",
-      "Rainy Day Treasure Hunt",
-      "Sponge Toss Water Games",
-      "Pressed Flower Bookmarks",
-      "Backyard Nature Journal",
-      "License Plate Bingo",
-      "Sunset Bubble Party"
-    ][index]
-  ),
+const activity = (
+  title: string,
+  category: string,
+  ageRange: string,
+  timeNeeded: string,
+  supplies: string,
+  description: string
+): Activity => ({
+  title,
+  slug: slugify(title),
   category,
-  ageRange: ["3-8", "4-10", "3-9", "4-12", "5-12", "6-12", "5-12", "2-8"][index],
-  timeNeeded: ["25 min", "45 min", "30 min", "35 min", "40 min", "20 min", "Car ride", "20 min"][index],
-  supplies:
-    [
-      "Chalk, driveway or sidewalk",
-      "Blankets, pillows, flashlight",
-      "Paper clues, small prize",
-      "Sponges, buckets, water",
-      "Flowers, paper, glue",
-      "Notebook, crayons, pencil",
-      "Printable bingo sheet, pencil",
-      "Bubbles, music, picnic blanket"
-    ][index],
-  description:
-    "A low-prep activity with flexible rules, easy setup, and plenty of room for siblings to play together."
-}));
+  ageRange,
+  timeNeeded,
+  supplies,
+  description
+});
+
+export const activities: Activity[] = [
+  activity(
+    "Sidewalk Chalk Obstacle Course",
+    "Outdoor Play",
+    "3-8",
+    "25 min",
+    "Chalk, driveway or sidewalk",
+    "Draw arrows, balance lines, jump circles, silly walks, and finish-line stars for a quick movement course."
+  ),
+  activity(
+    "Park Explorer Challenge",
+    "Outdoor Play",
+    "4-10",
+    "45 min",
+    "Water bottle, simple checklist",
+    "Visit a familiar park with a short challenge list: climb, swing, spot a bird, find shade, and choose a quiet bench."
+  ),
+  activity(
+    "Nature Color Hunt",
+    "Outdoor Play",
+    "3-9",
+    "20 min",
+    "Color card or crayons, small bag",
+    "Kids search for leaves, flowers, rocks, and outdoor objects that match each color on their card."
+  ),
+  activity(
+    "Scooter Parade",
+    "Outdoor Play",
+    "4-10",
+    "30 min",
+    "Scooters, bikes, helmets, streamers",
+    "Decorate wheels with streamers, then make a mini parade route around the driveway or sidewalk."
+  ),
+  activity(
+    "Sun Shadow Tracing",
+    "Outdoor Play",
+    "5-12",
+    "30 min",
+    "Chalk, toys, sunny pavement",
+    "Trace shadows from toys or family members, then return later to see how the shapes moved."
+  ),
+  activity(
+    "Outdoor Story Walk",
+    "Outdoor Play",
+    "4-9",
+    "25 min",
+    "Picture book, tape, paper",
+    "Tape pages or scene prompts along a porch, fence, or path so kids move from stop to stop as the story unfolds."
+  ),
+  activity(
+    "Living Room Camp-In",
+    "Indoor Activities",
+    "4-10",
+    "45 min",
+    "Blankets, pillows, flashlight",
+    "Build a cozy indoor campsite with a reading pile, pretend fire, snack cups, and flashlight stories."
+  ),
+  activity(
+    "Laundry Basket Ball Toss",
+    "Indoor Activities",
+    "2-7",
+    "15 min",
+    "Laundry basket, rolled socks",
+    "Use rolled socks as soft balls and move the basket farther away each round for an easy energy reset."
+  ),
+  activity(
+    "Sticker Story Pages",
+    "Indoor Activities",
+    "3-8",
+    "25 min",
+    "Paper, stickers, markers",
+    "Kids place stickers on a page and draw the rest of the story around them."
+  ),
+  activity(
+    "Kitchen Table Building Lab",
+    "Indoor Activities",
+    "4-12",
+    "40 min",
+    "Blocks, cups, craft sticks, tape",
+    "Set out safe building supplies and challenge kids to make a bridge, tower, tiny town, or marble path."
+  ),
+  activity(
+    "Quiet Time Listening Station",
+    "Indoor Activities",
+    "3-10",
+    "30 min",
+    "Audiobook or music, pillows, paper",
+    "Pair a short audiobook or playlist with drawing paper for a calm afternoon activity."
+  ),
+  activity(
+    "Indoor Farmer's Market",
+    "Indoor Activities",
+    "3-8",
+    "30 min",
+    "Play food, baskets, paper money",
+    "Turn the living room into a pretend market where kids sort, price, sell, and pack groceries."
+  ),
+  activity(
+    "Rainy Day Treasure Hunt",
+    "Rainy Day Ideas",
+    "3-9",
+    "30 min",
+    "Paper clues, small prize",
+    "Hide simple picture or word clues around the house leading to a snack, book, or printable activity."
+  ),
+  activity(
+    "Puddle Observation Walk",
+    "Rainy Day Ideas",
+    "4-10",
+    "20 min",
+    "Rain boots, jacket",
+    "After heavy rain, take a slow walk to look for ripples, reflections, worms, leaves, and clouds in puddles."
+  ),
+  activity(
+    "Rain Window Art",
+    "Rainy Day Ideas",
+    "3-8",
+    "20 min",
+    "Washable window markers",
+    "Draw umbrellas, clouds, flowers, and raindrops on a window while watching the weather outside."
+  ),
+  activity(
+    "Board Game Cafe",
+    "Rainy Day Ideas",
+    "5-12",
+    "60 min",
+    "Board games, snack tray, menu paper",
+    "Set up a pretend cafe with game choices, simple snacks, and a cozy table for stormy afternoon play."
+  ),
+  activity(
+    "Paper Boat Races",
+    "Rainy Day Ideas",
+    "5-10",
+    "25 min",
+    "Paper, shallow bin, straw",
+    "Fold paper boats and use straws to blow them across a bin of water or a supervised sink."
+  ),
+  activity(
+    "Rainy Day Puppet Show",
+    "Rainy Day Ideas",
+    "4-10",
+    "35 min",
+    "Socks or paper bags, markers",
+    "Make quick puppets and perform a three-scene show from behind the couch."
+  ),
+  activity(
+    "Sponge Toss Water Games",
+    "Water Play",
+    "4-12",
+    "35 min",
+    "Sponges, buckets, water",
+    "Soak sponges and toss them into buckets, onto chalk targets, or back and forth with a partner."
+  ),
+  activity(
+    "Ice Cube Rescue",
+    "Water Play",
+    "3-8",
+    "25 min",
+    "Ice cubes, small toys, warm water, spoons",
+    "Freeze tiny toys in ice or use plain cubes, then let kids melt and scoop them with warm water."
+  ),
+  activity(
+    "Toy Car Wash",
+    "Water Play",
+    "2-7",
+    "25 min",
+    "Toy cars, bin, soap, towels",
+    "Create a mini wash station for toy cars, animals, or washable outdoor toys."
+  ),
+  activity(
+    "Water Paint the Fence",
+    "Water Play",
+    "2-6",
+    "20 min",
+    "Bucket of water, paintbrushes",
+    "Kids paint fences, sidewalks, rocks, or patio furniture with water and watch it disappear in the sun."
+  ),
+  activity(
+    "Sink or Float Lab",
+    "Water Play",
+    "4-10",
+    "30 min",
+    "Tub of water, household objects",
+    "Gather safe objects and let kids predict, test, and sort what sinks and what floats."
+  ),
+  activity(
+    "Sprinkler Freeze Dance",
+    "Water Play",
+    "3-10",
+    "20 min",
+    "Sprinkler, music, towels",
+    "Play music near the sprinkler and freeze every time the song pauses."
+  ),
+  activity(
+    "Pressed Flower Bookmarks",
+    "Crafts",
+    "5-12",
+    "40 min",
+    "Flowers, paper, glue",
+    "Press small flowers or leaves, then turn them into bookmarks with paper, glue, and clear tape."
+  ),
+  activity(
+    "Paper Plate Sunshine Faces",
+    "Crafts",
+    "3-7",
+    "25 min",
+    "Paper plates, markers, paper strips",
+    "Make cheerful sunshine faces with paper rays, silly expressions, and bright summer colors."
+  ),
+  activity(
+    "Nature Collage Cards",
+    "Crafts",
+    "4-10",
+    "35 min",
+    "Cardstock, leaves, petals, glue",
+    "Collect small nature finds and arrange them into cards for grandparents, neighbors, or friends."
+  ),
+  activity(
+    "Friendship Bracelet Porch Time",
+    "Crafts",
+    "6-12",
+    "45 min",
+    "Embroidery floss or beads",
+    "Set up bracelet supplies outside for a calm porch project with a take-home result."
+  ),
+  activity(
+    "Cardboard Lemonade Stand",
+    "Crafts",
+    "4-10",
+    "60 min",
+    "Cardboard box, markers, tape",
+    "Build and decorate a pretend lemonade stand for dramatic play, math practice, or a real family snack."
+  ),
+  activity(
+    "Ice Pop Stick Picture Frames",
+    "Crafts",
+    "5-10",
+    "35 min",
+    "Craft sticks, glue, markers",
+    "Glue craft sticks into frames and decorate them for summer photos, drawings, or fridge art."
+  ),
+  activity(
+    "Backyard Nature Journal",
+    "Learning Activities",
+    "6-12",
+    "20 min",
+    "Notebook, crayons, pencil",
+    "Spend ten minutes observing outside, then draw or write one thing noticed, wondered, and learned."
+  ),
+  activity(
+    "Summer Reading Picnic",
+    "Learning Activities",
+    "4-12",
+    "30 min",
+    "Books, blanket, snack",
+    "Take books outdoors and pair reading time with a blanket snack to make daily reading feel special."
+  ),
+  activity(
+    "Lemonade Stand Math",
+    "Learning Activities",
+    "5-10",
+    "30 min",
+    "Play money, cups, price signs",
+    "Practice counting, pricing, adding, and making change with a pretend or real lemonade stand."
+  ),
+  activity(
+    "Alphabet Nature Tray",
+    "Learning Activities",
+    "3-7",
+    "25 min",
+    "Tray, nature items, letter cards",
+    "Collect safe outdoor items and match them to beginning letter sounds."
+  ),
+  activity(
+    "Weather Tracker Chart",
+    "Learning Activities",
+    "4-10",
+    "5 min daily",
+    "Printable chart, crayons",
+    "Track sunny, cloudy, rainy, and windy days for a week, then talk about patterns."
+  ),
+  activity(
+    "Backyard Measuring Hunt",
+    "Learning Activities",
+    "5-11",
+    "25 min",
+    "Tape measure or ruler",
+    "Measure leaves, sticks, toys, stepping stones, and shadows, then compare longest and shortest finds."
+  ),
+  activity(
+    "License Plate Bingo",
+    "Road Trip Activities",
+    "5-12",
+    "Car ride",
+    "Printable bingo sheet, pencil",
+    "Kids mark off states, colors, or letters they spot on license plates during a drive."
+  ),
+  activity(
+    "Would You Rather Road Trip",
+    "Road Trip Activities",
+    "4-12",
+    "Car ride",
+    "Question list",
+    "Use silly summer questions to keep conversation going without screens."
+  ),
+  activity(
+    "Travel Snack Sorting",
+    "Road Trip Activities",
+    "3-7",
+    "15 min",
+    "Snack mix, small cups",
+    "Let kids sort snack pieces by color, shape, or type before eating."
+  ),
+  activity(
+    "Window Scavenger Hunt",
+    "Road Trip Activities",
+    "4-10",
+    "Car ride",
+    "Printable checklist",
+    "Look for bridges, flags, cows, water towers, construction trucks, and other road trip sights."
+  ),
+  activity(
+    "Backseat Story Chain",
+    "Road Trip Activities",
+    "5-12",
+    "20 min",
+    "None",
+    "One person starts a story, then each rider adds a sentence until the tale becomes wonderfully silly."
+  ),
+  activity(
+    "Map the Route",
+    "Road Trip Activities",
+    "6-12",
+    "Car ride",
+    "Printed map, highlighter",
+    "Give kids a simple map and let them trace towns, rest stops, landmarks, and the destination."
+  ),
+  activity(
+    "Sunset Bubble Party",
+    "Backyard Fun",
+    "2-8",
+    "20 min",
+    "Bubbles, music, picnic blanket",
+    "Bring bubbles outside after dinner for an easy end-of-day ritual before bedtime."
+  ),
+  activity(
+    "Backyard Campout Checklist",
+    "Backyard Fun",
+    "4-12",
+    "60 min setup",
+    "Tent or blankets, flashlight",
+    "Set up a simple backyard camp with sleeping bags, a flashlight walk, and a bedtime snack."
+  ),
+  activity(
+    "Bug Safari",
+    "Backyard Fun",
+    "4-10",
+    "25 min",
+    "Magnifying glass, notebook",
+    "Look carefully for ants, beetles, butterflies, and other small visitors without touching them."
+  ),
+  activity(
+    "Porch Popsicle Reading",
+    "Backyard Fun",
+    "3-10",
+    "20 min",
+    "Popsicles, books, towels",
+    "Pair a frozen treat with a short read-aloud outside for a low-effort summer tradition."
+  ),
+  activity(
+    "Mini Garden Helper Hour",
+    "Backyard Fun",
+    "3-9",
+    "30 min",
+    "Watering can, gloves, small tools",
+    "Give kids simple garden jobs like watering pots, pulling obvious weeds, or checking for ripe tomatoes."
+  ),
+  activity(
+    "Backyard Olympics",
+    "Backyard Fun",
+    "4-12",
+    "45 min",
+    "Balls, cones, chalk, ribbons",
+    "Create silly events like sock toss, crab-walk races, balance walks, and chalk long jump."
+  )
+];
 
 export const mealCategories = [
   "Easy Summer Lunches",
