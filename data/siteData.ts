@@ -6,9 +6,11 @@ export type BlogPost = {
   date: string;
   category: string;
   excerpt: string;
+  intro: string;
   pinterestTitle: string;
   pinterestDescription: string;
-  sections: { heading: string; body: string }[];
+  sections: { heading: string; body: string; bullets?: string[] }[];
+  takeaway: string;
   related: string[];
 };
 
@@ -20,6 +22,10 @@ export type Activity = {
   timeNeeded: string;
   supplies: string;
   description: string;
+  setup: string;
+  steps: string[];
+  tips: string[];
+  variations: string[];
 };
 
 export type Meal = {
@@ -86,41 +92,329 @@ const blogTitles = [
   ["Printable Summer Bucket List for Kids", "Printables"]
 ] as const;
 
-export const blogPosts: BlogPost[] = blogTitles.map(([title, category], index) => {
-  const slug = slugify(title);
-  return {
-    title,
-    slug,
-    date: `2026-05-${String(index + 1).padStart(2, "0")}`,
-    category,
-    excerpt:
-      "A practical, parent-tested guide with cheerful ideas for simple summer fun for families.",
-    pinterestTitle: `${title} - Summer Sprout`,
-    pinterestDescription:
-      "Save this easy summer idea for kids, family routines, printables, and screen-free fun.",
-    related: blogTitles
-      .filter(([relatedTitle]) => relatedTitle !== title)
-      .slice(0, 3)
-      .map(([relatedTitle]) => slugify(relatedTitle)),
-    sections: [
-      {
-        heading: "Start with what feels easy",
-        body:
-          "Summer activities for kids do not need to be elaborate to feel memorable. Pick one simple idea, set out the supplies, and let the day breathe."
-      },
-      {
-        heading: "Make it work for your rhythm",
-        body:
-          "Choose a morning activity for high-energy kids, a quiet afternoon option, and a backup rainy day activity for kids when plans change."
-      },
-      {
-        heading: "Keep a few favorites on repeat",
-        body:
-          "The best summer fun for families often comes from reliable rituals: a weekly picnic, backyard water play, easy summer lunch ideas, or a printable checklist kids can help manage."
-      }
-    ]
-  };
+const relatedFor = (title: string) =>
+  blogTitles
+    .filter(([relatedTitle]) => relatedTitle !== title)
+    .slice(0, 3)
+    .map(([relatedTitle]) => slugify(relatedTitle));
+
+const blogPost = (
+  title: string,
+  category: string,
+  date: string,
+  excerpt: string,
+  intro: string,
+  sections: BlogPost["sections"],
+  takeaway: string
+): BlogPost => ({
+  title,
+  slug: slugify(title),
+  date,
+  category,
+  excerpt,
+  intro,
+  pinterestTitle: `${title} - Summer Sprout`,
+  pinterestDescription:
+    "Save this cheerful summer guide for easy kid activities, family routines, printables, and screen-free ideas.",
+  sections,
+  takeaway,
+  related: relatedFor(title)
 });
+
+export const blogPosts: BlogPost[] = [
+  blogPost(
+    "50 Easy Summer Activities for Kids at Home",
+    "Activities",
+    "2026-05-01",
+    "A big list of simple summer activities for kids that work at home, in the backyard, or around the kitchen table.",
+    "You do not need a packed calendar to make summer feel fun. A few repeatable ideas, a handful of supplies, and permission to keep things simple can carry a lot of ordinary weekdays.",
+    [
+      {
+        heading: "Quick backyard ideas",
+        body: "Start outside when the weather is kind. These ideas use space kids already know, which makes setup easier and cleanup faster.",
+        bullets: [
+          "Sidewalk chalk obstacle course",
+          "Water paint with buckets and brushes",
+          "Bubble dance party after dinner",
+          "Backyard nature color hunt",
+          "Toy car wash with soapy water"
+        ]
+      },
+      {
+        heading: "Calm indoor ideas",
+        body: "When the afternoon gets hot, move to low-key activities that help kids reset without screens.",
+        bullets: [
+          "Sticker story pages",
+          "Living room camp-in",
+          "Audiobook drawing station",
+          "Kitchen table building lab",
+          "Pretend farmer's market"
+        ]
+      },
+      {
+        heading: "Creative summer projects",
+        body: "A small project gives kids something to work toward without needing an all-day craft plan.",
+        bullets: [
+          "Pressed flower bookmarks",
+          "Paper plate sunshine faces",
+          "Nature collage cards",
+          "Friendship bracelets",
+          "Cardboard lemonade stand"
+        ]
+      },
+      {
+        heading: "How to make the list work",
+        body: "Choose one active idea, one quiet idea, and one rainy day backup each week. Keep the supplies visible in a basket so kids can help choose."
+      }
+    ],
+    "A simple summer at home can still feel full when kids have a few easy choices they can return to again and again."
+  ),
+  blogPost(
+    "Cheap Summer Fun Ideas for Families",
+    "Family Fun",
+    "2026-05-02",
+    "Budget-friendly family fun ideas for long summer days, slow weekends, and memory-making without overspending.",
+    "Summer costs can climb quickly, but kids often remember the small rituals most: picnic dinners, library mornings, neighborhood walks, and homemade treats.",
+    [
+      {
+        heading: "Free places to start",
+        body: "Look for repeatable outings close to home before planning bigger paid days.",
+        bullets: ["Library programs", "Splash pads", "Playground rotations", "Community concerts", "Nature trails"]
+      },
+      {
+        heading: "Low-cost family rituals",
+        body: "Turn ordinary routines into seasonal traditions with tiny upgrades.",
+        bullets: ["Friday porch popsicles", "Breakfast picnic", "Sunset walk", "Backyard movie night", "Homemade lemonade stand"]
+      },
+      {
+        heading: "Use what you already have",
+        body: "Chalk, blankets, buckets, cardboard, books, and kitchen tools can become an entire activity plan."
+      },
+      {
+        heading: "Save paid outings for anchor days",
+        body: "If your budget allows a few bigger outings, space them out and let simple home days fill the gaps."
+      }
+    ],
+    "Cheap summer fun works best when it feels intentional, not like a consolation prize."
+  ),
+  blogPost(
+    "Easy Summer Lunch Ideas for Kids",
+    "Meal Ideas",
+    "2026-05-03",
+    "Simple easy summer lunch ideas for kids, including no-cook meals, snack plates, picnic lunches, and flexible leftovers.",
+    "Hot days call for lunches that are fast, flexible, and friendly to picky eaters. Think mix-and-match instead of complicated recipes.",
+    [
+      {
+        heading: "No-cook lunch ideas",
+        body: "Keep a short list of lunches that do not require turning on the stove.",
+        bullets: ["Turkey cucumber roll-ups", "Snack board lunches", "Hummus pita pockets", "Fruit and yogurt plates", "Cold pasta cups"]
+      },
+      {
+        heading: "Picnic-ready lunches",
+        body: "Pack foods that hold well and are easy for kids to eat outside.",
+        bullets: ["Pinwheel wraps", "Cheese cubes and crackers", "Mini muffins", "Grapes or berries", "Veggie cups with dip"]
+      },
+      {
+        heading: "Use a lunch formula",
+        body: "Try protein plus fruit or veggie plus crunchy side plus small treat. The formula keeps decisions light."
+      },
+      {
+        heading: "Prep once, coast twice",
+        body: "Wash fruit, slice veggies, and portion dips once or twice a week so lunch assembly takes minutes."
+      }
+    ],
+    "The easiest summer lunches are the ones your kids will actually eat and you can repeat without overthinking."
+  ),
+  blogPost(
+    "How to Create a Simple Summer Routine",
+    "Routines",
+    "2026-05-04",
+    "A realistic summer routine for kids with flexible blocks for chores, meals, quiet time, activities, and outdoor play.",
+    "A summer routine does not have to feel strict. It can simply give the day a gentle shape so everyone knows what comes next.",
+    [
+      {
+        heading: "Use flexible blocks",
+        body: "Think in anchors instead of exact times. Morning reset, outside time, lunch, quiet time, activity, dinner, and bedtime can be enough."
+      },
+      {
+        heading: "Add daily non-negotiables",
+        body: "Pick a few simple expectations that happen before bigger fun.",
+        bullets: ["Get dressed", "Brush teeth", "Help with one chore", "Read or listen to a book", "Tidy activity supplies"]
+      },
+      {
+        heading: "Build in quiet time",
+        body: "Even older kids benefit from a predictable calm block with books, drawing, puzzles, or audiobooks."
+      },
+      {
+        heading: "Keep the chart visible",
+        body: "A printable summer routine chart helps kids check the rhythm without asking you every ten minutes."
+      }
+    ],
+    "The best summer routine creates calm without squeezing the easy magic out of the day."
+  ),
+  blogPost(
+    "Best Screen-Free Activities for Kids",
+    "Activities",
+    "2026-05-05",
+    "Screen-free summer activities for kids that are easy to set up, repeatable, and realistic for home days.",
+    "Screen-free time works better when kids know what they can do instead. A visible list of choices can make the transition much smoother.",
+    [
+      {
+        heading: "Set up activity zones",
+        body: "Create small stations kids can use without much help: art, building, reading, pretend play, and outside play."
+      },
+      {
+        heading: "Offer choices, not lectures",
+        body: "A short menu keeps kids from feeling stuck.",
+        bullets: ["Build something", "Make something", "Read something", "Move your body", "Help with something"]
+      },
+      {
+        heading: "Use boredom as a bridge",
+        body: "A little boredom often comes before creative play. Keep calm and point kids back to the activity menu."
+      },
+      {
+        heading: "Make it repeatable",
+        body: "Choose screen-free summer activities that can be used again with small changes, like new chalk targets or a different scavenger hunt."
+      }
+    ],
+    "Screen-free days get easier when the alternatives are visible, simple, and genuinely fun."
+  ),
+  blogPost(
+    "Rainy Day Summer Activities",
+    "Indoor Play",
+    "2026-05-06",
+    "Rainy day activities for kids that keep summer afternoons calm, creative, and playful indoors.",
+    "Rainy summer days can feel long, but they are also a chance to slow down and pull out cozy, creative activities.",
+    [
+      {
+        heading: "Cozy setup ideas",
+        body: "Start by making the house feel inviting: pillows, books, music, soft lighting, and a simple snack tray."
+      },
+      {
+        heading: "Creative rainy day activities",
+        body: "Use easy materials and let the project stretch.",
+        bullets: ["Puppet show", "Rain window art", "Paper boat races", "Sticker stories", "Cardboard town"]
+      },
+      {
+        heading: "Move indoors safely",
+        body: "If kids need movement, use sock toss, hallway bowling, freeze dance, or a couch-cushion obstacle path."
+      },
+      {
+        heading: "Save a few ideas for storms",
+        body: "Keep a rainy day basket tucked away so it feels fresh when the weather changes plans."
+      }
+    ],
+    "A rainy day can become one of summer's sweetest pauses with a few cozy ideas ready to go."
+  ),
+  blogPost(
+    "Backyard Water Play Ideas",
+    "Outdoor Play",
+    "2026-05-07",
+    "Backyard water play ideas for kids using buckets, sponges, sprinklers, ice, toys, and simple household supplies.",
+    "Water play is one of the easiest ways to reset a hot summer afternoon. Most ideas only need a bucket, towel, and a little supervision.",
+    [
+      {
+        heading: "Low-prep water games",
+        body: "These ideas are easy to set up and easy to repeat.",
+        bullets: ["Sponge toss", "Toy car wash", "Water painting", "Sprinkler freeze dance", "Ice cube rescue"]
+      },
+      {
+        heading: "Learning with water",
+        body: "Add gentle STEM play with sink-or-float tests, measuring cups, pouring stations, and ice melting experiments."
+      },
+      {
+        heading: "Keep cleanup simple",
+        body: "Set towels by the door, choose washable toys, and keep water play in one zone when possible."
+      },
+      {
+        heading: "Safety reminders",
+        body: "Stay close, empty bins after play, and adjust activities for age and swimming ability."
+      }
+    ],
+    "Backyard water play does not need a pool to feel like a summer highlight."
+  ),
+  blogPost(
+    "Road Trip Activities for Kids",
+    "Travel",
+    "2026-05-08",
+    "Road trip activities for kids with printable games, conversation prompts, snack ideas, and low-mess backseat fun.",
+    "The best road trip activities are easy to reach, low-mess, and flexible enough to use for ten minutes or an hour.",
+    [
+      {
+        heading: "Printable road trip games",
+        body: "Print a few activities before leaving so you have screen-free options ready.",
+        bullets: ["License plate bingo", "Window scavenger hunt", "Road sign search", "Travel tic-tac-toe", "Destination countdown"]
+      },
+      {
+        heading: "Conversation games",
+        body: "Use simple prompts when everyone needs a reset.",
+        bullets: ["Would you rather", "Story chain", "Guess the animal", "Two truths and a wish", "Favorite vacation memory"]
+      },
+      {
+        heading: "Snack activities",
+        body: "For younger kids, sorting snack mix by color or shape can buy a calm stretch of road."
+      },
+      {
+        heading: "Pack in small batches",
+        body: "Instead of handing everything out at once, save a few surprises for later in the drive."
+      }
+    ],
+    "A little road trip prep can make the miles feel calmer for kids and grownups."
+  ),
+  blogPost(
+    "Summer Chore Chart Ideas",
+    "Routines",
+    "2026-05-09",
+    "Summer chore chart ideas for kids that are simple, visual, age-friendly, and easy to maintain.",
+    "A summer chore chart works best when it is short, visible, and tied to the daily rhythm kids already understand.",
+    [
+      {
+        heading: "Choose age-friendly jobs",
+        body: "Keep chores realistic and specific.",
+        bullets: ["Water plants", "Match socks", "Clear lunch dishes", "Feed pets", "Tidy shoes", "Wipe outdoor table"]
+      },
+      {
+        heading: "Use picture cues",
+        body: "Young kids respond well to simple icons or drawings next to each job."
+      },
+      {
+        heading: "Pair chores with routine anchors",
+        body: "Attach chores to moments like after breakfast, before lunch, or before outside play."
+      },
+      {
+        heading: "Keep rewards simple",
+        body: "Try family rewards, extra read-aloud time, choosing dinner music, or picking the next activity."
+      }
+    ],
+    "A good summer chore chart helps kids participate in family life without turning every morning into a negotiation."
+  ),
+  blogPost(
+    "Printable Summer Bucket List for Kids",
+    "Printables",
+    "2026-05-10",
+    "How to use a printable summer bucket list for kids without overplanning the season.",
+    "A printable summer bucket list gives kids something cheerful to anticipate while still leaving room for slow days.",
+    [
+      {
+        heading: "Choose a realistic number",
+        body: "Instead of trying to finish everything, invite each family member to pick a few must-do ideas."
+      },
+      {
+        heading: "Mix free and special ideas",
+        body: "Balance bigger outings with simple ideas like popsicles outside, library mornings, and backyard campouts."
+      },
+      {
+        heading: "Display it where kids can see it",
+        body: "Put the list on the fridge, command center, or pantry door so it becomes part of summer conversation."
+      },
+      {
+        heading: "Use it as a menu",
+        body: "The bucket list is not a contract. It is a menu for days when everyone wants a little spark."
+      }
+    ],
+    "The best summer bucket list adds joy and direction without becoming another assignment."
+  )
+];
 
 export const activityCategories = [
   "Outdoor Play",
@@ -147,7 +441,25 @@ const activity = (
   ageRange,
   timeNeeded,
   supplies,
-  description
+  description,
+  setup: `Gather ${supplies.toLowerCase()} and choose a comfortable spot for ${category.toLowerCase()}. Keep water, shade, and cleanup supplies nearby when the activity is outside.`,
+  steps: [
+    "Set out the supplies before inviting kids to begin.",
+    "Explain the activity in one or two simple sentences.",
+    "Let kids help make one choice, such as the order, colors, rules, or starting spot.",
+    "Play for the suggested time, then wrap up before everyone is overtired.",
+    "Do a quick reset together so the idea is easy to repeat another day."
+  ],
+  tips: [
+    "Adjust the rules for younger siblings so everyone can join.",
+    "Keep expectations loose; the best version is the one your kids actually enjoy.",
+    "Take a photo or jot down what worked if you want to repeat it later."
+  ],
+  variations: [
+    "Make it quieter by turning it into a solo activity.",
+    "Make it social by inviting siblings, cousins, neighbors, or friends.",
+    "Make it educational by adding counting, color sorting, storytelling, measuring, or observation."
+  ]
 });
 
 export const activities: Activity[] = [

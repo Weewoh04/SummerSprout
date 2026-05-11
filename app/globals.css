@@ -537,6 +537,55 @@ p {
 .post-content section {
   display: grid;
   gap: 0.55rem;
+  scroll-margin-top: 110px;
+}
+
+.article-intro {
+  font-size: 1.12rem;
+  color: var(--ink);
+}
+
+.pretty-list {
+  margin: 0.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.pretty-list li {
+  margin: 0.32rem 0;
+}
+
+.takeaway-box {
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(105, 181, 120, 0.28);
+  background: #eef8e9;
+}
+
+.activity-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.stat-card svg {
+  color: var(--green-dark);
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.stat-card strong {
+  line-height: 1.25;
 }
 
 .bucket-grid {
@@ -648,7 +697,8 @@ p {
   .card-grid,
   .content-grid,
   .footer-grid,
-  .bucket-grid {
+  .bucket-grid,
+  .activity-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -669,7 +719,8 @@ p {
   .card-grid,
   .content-grid,
   .footer-grid,
-  .bucket-grid {
+  .bucket-grid,
+  .activity-facts {
     grid-template-columns: 1fr;
   }
 

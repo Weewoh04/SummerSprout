@@ -7,7 +7,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <article className="card blog-card">
       <div className="card-art" aria-hidden="true" />
-      <p className="meta">{post.category} · {post.date}</p>
+      <p className="meta">{post.category} / {post.date}</p>
       <h3>{post.title}</h3>
       <p>{post.excerpt}</p>
       <Link className="text-link" href={`/blog/${post.slug}`}>
@@ -28,8 +28,8 @@ export function ActivityCard({ activity }: { activity: Activity }) {
         <div><dt>Time</dt><dd>{activity.timeNeeded}</dd></div>
         <div><dt>Supplies</dt><dd>{activity.supplies}</dd></div>
       </dl>
-      <ShareButtons title={activity.title} path={`/activities#${activity.slug}`} />
-      <Link className="button button--small" href={`/activities#${activity.slug}`}>
+      <ShareButtons title={activity.title} path={`/activities/${activity.slug}`} />
+      <Link className="button button--small" href={`/activities/${activity.slug}`}>
         <ListChecks size={16} aria-hidden="true" />
         View Activity
       </Link>

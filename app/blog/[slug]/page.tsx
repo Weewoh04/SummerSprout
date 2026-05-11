@@ -66,17 +66,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <PlaceholderImage label="Featured image placeholder" />
             <AdBlock />
             <article>
-              <p>
-                This guide is designed for parents and caregivers who want
-                useful, realistic summer fun for families without making every
-                day feel overplanned.
-              </p>
+              <p className="article-intro">{post.intro}</p>
               {post.sections.map((section) => (
                 <section id={section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-")} key={section.heading}>
                   <h2>{section.heading}</h2>
                   <p>{section.body}</p>
+                  {section.bullets ? (
+                    <ul className="pretty-list">
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </section>
               ))}
+              <section className="takeaway-box">
+                <h2>Summer Sprout takeaway</h2>
+                <p>{post.takeaway}</p>
+              </section>
               <section>
                 <h2>Pinterest-friendly image</h2>
                 <div className="two-column">
